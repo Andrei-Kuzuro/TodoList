@@ -1,0 +1,29 @@
+.wrapper {
+  display: flex;
+  margin: 0 auto;
+  width: 600px;
+  align-items: baseline;
+}
+
+.todoText {
+  display: inline-block;
+  flex: 1;
+  text-align: left;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+
+.todoIndex {
+  display: inline-block;
+  margin-right: 10px;
+  flex: 1;
+  text-align: left;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+
+.buttonOnDelete {
+  font-size: 24px;
+}

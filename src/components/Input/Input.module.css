@@ -17,6 +17,7 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   transition: 0.5s;
 }
+
 .input:hover {
   background-position: right center;
 }

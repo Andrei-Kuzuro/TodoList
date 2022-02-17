@@ -1,53 +1,27 @@
-import { useState } from 'react';
-import { Form } from '../Form/Form';
-import { ToDoItem } from '../ToDoItem/ToDoItem';
-import styles from './ToDoList.module.css';
-
-interface ITodoItem {
-  id: string;
-  text: string;
-  completed: boolean;
-  time: string;
-}
+import { Form } from "../Form/Form";
+import { ToDoItem } from "../ToDoItem/ToDoItem";
+import styles from "./ToDoList.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { ITodosState } from "../../redux/reducers/todosReducer";
 
 export const ToDoList = () => {
-  const [todos, setTodos] = useState<ITodoItem[]>([]);
+  const state = useSelector((state: ITodosState) => state);
+
+  const todos = state.todos;
+
+  const dispatch = useDispatch();
 
   const onClickDelete = (id: string) => {
-    const newTodos = todos.filter((item) => {
-      if (item.id === id) {
-        return false;
-      }
-      return true;
-    });
-
-    setTodos(newTodos);
+    dispatch({ type: "DELETE_TODO", id });
   };
 
   const onClickComplete = (id: string) => {
-    const newTodos = todos.map((item) => {
-      if (item.id === id) {
-        item.completed = !item.completed;
-      }
-      return item;
-    });
-
-    setTodos(newTodos);
+    dispatch({ type: "COMPLETE_TODO", id });
   };
 
   const addNewTodo = (text: string) => {
-    if (text !== '') {
-      const date = new Date();
-
-      const newTodo = {
-        id: 'id' + Math.random().toString(16).slice(2),
-        text: text,
-        completed: false,
-        time: `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`,
-      };
-
-      const newTodos = [...todos, newTodo];
-      setTodos(newTodos);
+    if (text !== "") {
+      dispatch({ type: "ADD_TODO", text: text });
     }
   };
 
@@ -70,7 +44,7 @@ export const ToDoList = () => {
       })}
       <p>Всего дел: {todos.length}</p>
       <p>
-        Выполненные:{' '}
+        Выполненные:{" "}
         {todos.reduce((prev, curr) => {
           if (curr.completed) {
             return prev + 1;

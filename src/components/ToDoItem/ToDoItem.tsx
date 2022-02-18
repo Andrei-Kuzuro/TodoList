@@ -1,8 +1,8 @@
-import { Button } from '../Button/Button';
-import styles from './ToDoItem.module.css';
-import { useState } from 'react';
+import { Button } from "../Button/Button";
+import styles from "./ToDoItem.module.css";
+import { useState } from "react";
 
-interface IProps {
+export interface IProps {
   text: string;
   index: number;
   time: string;
@@ -27,17 +27,17 @@ export const ToDoItem = ({
 
   return (
     <div className={styles.wrapper}>
-      <Button text='&#10004;' onClick={onComplete} />
+      <Button text="&#10004;" onClick={onComplete} />
       <p
         onClick={toggleShowTime}
         className={styles.todoText}
-        style={{ textDecoration: completed ? 'line-through' : 'none' }}
+        style={{ textDecoration: completed ? "line-through" : "none" }}
       >
         <span className={styles.todoIndex}>{index + 1}</span>
         {text}
       </p>
       {showTime ? <p>{time}</p> : null}
-      <Button text='&#10006;' onClick={onDelete} />
+      <Button text="&#10006;" onClick={onDelete} />
     </div>
   );
 };
